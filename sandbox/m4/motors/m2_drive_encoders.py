@@ -11,7 +11,7 @@ Authors: David Fisher and Craig McGee, Jacob Back, Chris Fusaro.
 #  this file below these comments.
 #   If your program says and prints anything at the start change it to print and say "Drive using encoders"
 
-import ev3dev as ev3
+import ev3dev.ev3 as ev3
 import time
 
 def main():
@@ -83,4 +83,4 @@ def main():
 #
 # Observations you should make, run_to_rel_pos is easier to use since it uses encoders that are independent of speed.
 
-
+main()
