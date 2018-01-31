@@ -134,7 +134,7 @@ def main():
 #   400 dps 36 inches (make sure it drives within 9 inches of the target distance)
 # Do more tests if you see fit.  Ideally you should be +/- 25% of the target goal.
 #
-# DONE: 8. Call over a TA or instructor to sign your team's checkoff sheet and
+# D0NE: 8. Call over a TA or instructor to sign your team's checkoff sheet and
 # do a code review.
 #
 #  Observation you should make, the pattern run_forever-->time.sleep-->stop naturally blocks code execution until done.
