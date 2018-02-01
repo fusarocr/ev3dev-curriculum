@@ -55,3 +55,5 @@ class Snatch3r(object):
             self.right_motor.run_to_rel_pos(speed_sp=-turn_speed_sp,
                                             position_sp=degrees_through,
                                             stop_action=ev3.Motor.STOP_ACTION_BRAKE)
+        self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+        self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
