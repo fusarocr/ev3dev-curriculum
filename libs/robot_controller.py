@@ -40,7 +40,7 @@ class Snatch3r(object):
         """Turns the robot left and right depending on the degrees_to_turn
         and the turn_speed_sp"""
         if degrees_to_turn > 0:
-            degrees_through=
+            degrees_through=200
             self.left_motor.run_to_rel_pos(speed_sp=-turn_speed_sp,
                                            position_sp=degrees_through,
                                         stop_action=ev3.Motor.STOP_ACTION_BRAKE)
@@ -48,7 +48,7 @@ class Snatch3r(object):
                                            position_sp=degrees_through,
                                            stop_action=ev3.Motor.STOP_ACTION_BRAKE)
         if degrees_to_turn < 0:
-            degrees_through=
+            degrees_through=200
             self.left_motor.run_to_rel_pos(speed_sp=turn_speed_sp,
                                            position_sp=degrees_through,
                                            stop_action=ev3.Motor.STOP_ACTION_BRAKE)

@@ -67,14 +67,9 @@ def main():
     robot = robo.Snatch3r()
 
     while True:
+        degrees_to_turn = int(input("Degrees to turn: "))
         speed_deg_per_second = int(input("Speed (0 to 900 dps): "))
-        if speed_deg_per_second == 0:
-            break
-        inches_target = int(input("Distance (inches): "))
-        if inches_target == 0:
-            break
-
-        robot.drive_inches(inches_target, speed_deg_per_second)
+        robot.turn_degrees(degrees_to_turn, speed_deg_per_second)
         ev3.Sound.beep().wait()  # Fun little beep
 
     print("Goodbye!")
