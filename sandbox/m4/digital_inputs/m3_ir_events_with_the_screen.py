@@ -21,7 +21,7 @@ Which will probably not require you to type the password since sudo was just run
 
 BTW chvt means CHange the Virtual Terminal, and 86ing something means to kick it out.
 
-Authors: David Fisher and Jacob Back, Chris Fusaro, Craig McGee II.
+Authors: David Fisher and Jacob Back, Chris Fusaro, Craig McGee Jr.
 """  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import ev3dev.ev3 as ev3
