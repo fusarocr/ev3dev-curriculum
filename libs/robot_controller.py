@@ -125,4 +125,3 @@ class Snatch3r(object):
 
     def shutdown(self):
         ev3.Sound.speak("Goodbye")
-        exit()
