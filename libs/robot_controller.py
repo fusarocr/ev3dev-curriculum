@@ -106,3 +106,23 @@ class Snatch3r(object):
         # motor
         # finishes running
         ev3.Sound.beep()
+
+    def left_forward(self):
+        self.left_motor.run_forever(speed_sp=self.MAX_SPEED)
+
+    def right_forward(self):
+        self.right_motor.run_forever(speed_sp=self.MAX_SPEED)
+
+    def left_backward(self):
+        self.left_motor.run_forever(speed_sp=-self.MAX_SPEED)
+
+    def right_backward(self):
+        self.right_motor.run_forever(speed_sp=-self.MAX_SPEED)
+
+    def stop(self):
+        self.left_motor.stop()
+        self.right_motor.stop()
+
+    def shutdown(self):
+        ev3.Sound.speak("Goodbye")
+        exit()
