@@ -141,3 +141,7 @@ class Snatch3r(object):
     def left_turn(self,left_speed,right_speed):
         self.left_motor.run_forever(speed_sp = -left_speed)
         self.right_motor.run_forever(speed_sp = right_speed)
+
+    def loop_forever(self):
+        while True:
+            ()
