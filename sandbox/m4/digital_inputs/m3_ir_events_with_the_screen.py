@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
 """
-In this module you'll practice using the IR Remote using event callbacks.  You'll find the process works the same
-as buttons.  There are 6 buttons (up, down, left, right, enter, and back) and 16 IR remote buttons (4 buttons *
-4 channels).  We will only use lambda callbacks for this example since that is the easiest way to do everything once
+In this module you'll practice using the IR Remote using event callbacks.  
+You'll find the process works the same
+as buttons.  There are 6 buttons (up, down, left, right, enter, and back) and 
+16 IR remote buttons (4 buttons *
+4 channels).  We will only use lambda callbacks for this example since that is 
+the easiest way to do everything once
 you are comfortable with the lambda syntax.
 
-Your task will be to display different images on the screen when certain IR buttons are pressed.  Working with the
-screen is easy if you use the `chmod +x m3_ir_events_with_the_screen.py` command, then run the program from the Brickman
-interface.  If you want to use SSH to run the program though you first need to stop the Brickman programming from
-running so that your screen images stay visible for more than 1 second.  You can keep the Brickman UI program stopped
+Your task will be to display different images on the screen when certain IR
+ buttons are pressed.  Working with the
+screen is easy if you use the `chmod +x m3_ir_events_with_the_screen.py` 
+command, then run the program from the Brickman
+interface.  If you want to use SSH to run the program though you first need to
+ stop the Brickman programming from
+running so that your screen images stay visible for more than 1 second.  
+You can keep the Brickman UI program stopped
 until you complete this problem.
 
 To stop the Brickman interface type:
@@ -17,9 +24,11 @@ When prompted for the password - C$$E120
 
 To restart the Brickman interface after you complete this problem type:
   sudo chvt 1
-Which will probably not require you to type the password since sudo was just run earlier.
+Which will probably not require you to type the password since sudo was just 
+run earlier.
 
-BTW chvt means CHange the Virtual Terminal, and 86ing something means to kick it out.
+BTW chvt means CHange the Virtual Terminal, and 86ing something means to kick 
+it out.
 
 Authors: David Fisher and Jacob Back, Chris Fusaro, Craig McGee Jr.
 """  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.

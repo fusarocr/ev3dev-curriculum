@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-Contains example code snippets used in the drive motor lecture.  Don't try to actually run this file!
+Contains example code snippets used in the drive motor lecture.  Don't try to
+ actually run this file!
 These are just snippets used in the lecture, not actual code to run!
 
-TODO: 1. PASSIVELY LISTEN TO THE LECTURE ABOUT DIGITAL INPUTS (and a few other things)
+TODO: 1. PASSIVELY LISTEN TO THE LECTURE ABOUT DIGITAL INPUTS
+ (and a few other things)
 https://docs.google.com/presentation/d/1mUxsC-cUO4S5bwhTAQG0G10IO0gsbAU5YEORxeh0mMc/edit?usp=sharing
 
 Author: David Fisher
@@ -108,10 +110,12 @@ def button_events_using_lambda():
 
 
 def button_events_using_lambda_with_objects():
-    """Example of using buttons with events + callbacks with lambda using objects"""
+    """Example of using buttons with events + callbacks with lambda using
+    objects"""
 
     class DataContainer(object):
-        """ Helper class that might be useful to communicate between different callbacks."""
+        """ Helper class that might be useful to communicate between different
+         callbacks."""
 
         def __init__(self):
             self.running = True
@@ -152,7 +156,8 @@ def leds_example():
             ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.ORANGE)
 
-    ev3.Leds.all_off()  # The lines below can be used to turn off only 1 LED if you need that.
+    ev3.Leds.all_off()  # The lines below can be used to turn off only 1 LED
+    #  if you need that.
     # ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.BLACK)
     # ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.BLACK)
 
@@ -176,7 +181,8 @@ def sound_examples():
 
 
 def ir_remote_example(dc):
-    """Example of setting up an IR Remote button, shows only 1 but the pattern is easy to follow for more."""
+    """Example of setting up an IR Remote button, shows only 1 but the pattern
+    is easy to follow for more."""
 
     def handle_red_up_1(button_state, dc):
         if button_state:
@@ -194,8 +200,10 @@ def ir_remote_example(dc):
 
 
 def screen_example():
-    """Shows the commands to add a full screen image.  There is more you could do with the screen, but not the focus
-       here.  Look online to learn more. https://sites.google.com/site/ev3python/learn_ev3_python/screen"""
+    """Shows the commands to add a full screen image.  There is more you could
+    do with the screen, but not the focus
+       here.  Look online to learn more.
+       https://sites.google.com/site/ev3python/learn_ev3_python/screen"""
     from PIL import Image
     lcd_screen = ev3.Screen()
 
