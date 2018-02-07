@@ -70,11 +70,8 @@ import time
 
 class MyDelegate(object):
 
-    def __init__(self):
+    def __init__(self,my_delagate = None):
         self.running = True
-
-
-
 
 
     def set_led(self, led_side_string, led_color_string):
@@ -119,7 +116,8 @@ def main():
     btn = ev3.Button()
     btn.on_up = lambda state: handle_button_press(state, mqtt_client,
                                                   "Up")
-    btn.on_down = lambda state: (state, mqtt_client, "Down")
+    btn.on_down = lambda state: handle_button_press (state, mqtt_client,
+                                                     "Down")
     btn.on_left = lambda state: handle_button_press(state, mqtt_client, "Left")
     btn.on_right = lambda state: handle_button_press(state, mqtt_client, "Right")
     btn.on_backspace = lambda state: handle_shutdown(state, my_delegate)
