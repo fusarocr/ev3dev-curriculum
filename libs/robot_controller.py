@@ -125,3 +125,19 @@ class Snatch3r(object):
 
     def shutdown(self):
         ev3.Sound.speak("Goodbye")
+
+    def forward(self,left_speed,right_speed):
+        self.left_motor.run_forever(speed_sp = left_speed)
+        self.right_motor.run_forever(speed_sp = right_speed)
+
+    def backward(self,left_speed,right_speed):
+        self.left_motor.run_forever(speed_sp = -left_speed)
+        self.right_motor.run_forever(speed_sp = -right_speed)
+
+    def right_turn(self,left_speed,right_speed):
+        self.left_motor.run_forever(speed_sp = left_speed)
+        self.right_motor.run_forever(speed_sp = -right_speed)
+
+    def left_turn(self,left_speed,right_speed):
+        self.left_motor.run_forever(speed_sp = -left_speed)
+        self.right_motor.run_forever(speed_sp = right_speed)
