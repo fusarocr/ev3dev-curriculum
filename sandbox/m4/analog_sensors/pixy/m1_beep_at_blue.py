@@ -10,8 +10,8 @@ If the width reading is greater than 0 then you should make your robot beep.  If
 robot beeps thinking blue is present, but no blue is present) try setting the threshold higher than 0 (see what works
 for your environment). After a beep wait for at least 1 second to avoid lots of annoying beeps.
 
-Authors: David Fisher and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher and Craig McGee Jr, Jacob Back, Chris Fusaro.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import ev3dev.ev3 as ev3
 import time
@@ -35,9 +35,13 @@ def main():
         #   self.pixy = ev3.Sensor(driver_name="pixy-lego")
         #   assert self.pixy
         # Then here you can use a command like width = robot.pixy.value(3)
-
-
-
+        x = robot.pixy.value(1)
+        y = robot.pixy.value(2)
+        width = robot.pixy.value(3)
+        height = robot.pixy.value(4)
+        print("(X, Y)=({}, {}) Width={} Height={}".format(x, y, width, height))
+        if width > 0:
+            ev3.Sound.beep().wait()
         time.sleep(0.1)
 
     print("Goodbye!")
