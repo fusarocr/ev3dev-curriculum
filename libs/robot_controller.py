@@ -152,6 +152,7 @@ class Snatch3r(object):
     def loop_forever(self):
         while True:
             ()
+
     def seek_beacon(self):
         forward_speed = 300
         turn_speed = 100
@@ -173,7 +174,8 @@ class Snatch3r(object):
                     # Close enough of a heading to move forward
                     print("On the right heading. Distance: ", current_distance)
                     # You add more!
-                    if current_distance == 1:
+                    if current_distance <2:
+                        self.drive_inches(2,300)
                         return True
                     else:
                         self.forward(500, 500)

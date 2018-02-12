@@ -35,6 +35,7 @@ def main():
             # beacon" if the return value is True.  (i.e. don't say "Found the beacon" if the attempts was cancelled.)
             if result:
                 ev3.Sound.speak("Found the beacon")
+                robot.stop()
 
             command = input("Hit enter to seek the beacon again or enter q to quit: ")
             if command == "q":
@@ -74,7 +75,7 @@ def seek_beacon(robot):
             print("IR Remote not found. Distance is -128")
             robot.stop()
         else:
-            # TODO: 4. Implement the following strategy to find the beacon.
+            # Done: 4. Implement the following strategy to find the beacon.
             # If the absolute value of the current_heading is less than 2, you are on the right heading.
             #     If the current_distance is 0 return from this function, you have found the beacon!  return True
             #     If the current_distance is greater than 0 drive straight forward (forward_speed, forward_speed)
@@ -95,7 +96,7 @@ def seek_beacon(robot):
                 # Close enough of a heading to move forward
                 print("On the right heading. Distance: ", current_distance)
                 # You add more!
-                if current_distance == 0:
+                if current_distance <=2:
                     return True
                 else:
                     robot.forward(500,500)
