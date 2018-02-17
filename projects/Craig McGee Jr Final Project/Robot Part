@@ -1,0 +1,26 @@
+import ev3dev.ev3 as ev3
+import time
+import math
+import robot_controller as robo
+import mqtt_remote_method_calls as com
+
+class Acts_upon_messages(object):
+    def __init__(self, robot):
+        self.robot = robot
+        pass
+
+    def Simon(self, number, string):
+        print(number, string)
+        self.robot
+
+
+def main():
+    robot = robo.Snatch3r()
+    acts_upon_messages = Acts_upon_messages(robot)
+    send_and_receive_msg = com.MqttClient(acts_upon_messages)
+    send_and_receive_msg.connect_to_pc()
+    while True:
+        time.sleep(.1)
+
+
+main()

@@ -1,0 +1,28 @@
+import tkinter
+from tkinter import ttk
+import math
+import time
+import ev3dev.ev3 as ev3
+import robot_controller as robo
+import mqtt_remote_method_calls as com
+
+
+def main():
+    send_and_receive_msg = com.MqttClient()
+    send_and_receive_msg.connect_to_ev3()
+    root = tkinter.Tk()
+    frame1 = ttk.Frame(root, padding=10)
+    frame1.grid()
+    entry_box = ttk.Entry(frame1, width = 10)
+    entry_box.grid()
+    go_button = ttk.Button(frame1, padding = 10)
+    go_button["command"] = lambda:go_button_pressed(send_and_receive_msg)
+    root.mainloop()
+
+def go_button_pressed(send_and_receive_msg):
+    send_and_receive_msg.send_message("Simon", [42, "Hello"])
+
+
+
+
+main()
