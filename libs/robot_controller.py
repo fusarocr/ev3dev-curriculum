@@ -105,7 +105,6 @@ class Snatch3r(object):
     def arm_down(self):
         """
         Moves the Snatch3r arm to the down position.
-
         """
         # Code that attempts to do this task but has bugs.  Fix them.
         self.arm_motor.run_to_abs_pos()
@@ -195,4 +194,91 @@ class Snatch3r(object):
         print("Abandon ship!")
         self.stop()
         return False
+
+    def mark_sq1(self):
+        """Chris tic tac toe code"""
+        self.drive_inches(6.5, 400)
+        ev3.Sound.speak('Place Mark').wait()
+        self.arm_calibration()
+        self.drive_inches(-6.5,400)
+
+    def mark_sq2(self):
+        """Chris tic tac toe code"""
+        self.drive_inches(13, 400)
+        ev3.Sound.speak('Place Mark').wait()
+        self.arm_calibration()
+        self.drive_inches(-13,40)
+
+    def mark_sq3(self):
+        """Chris tic tac toe code"""
+        self.drive_inches(19.5, 400)
+        ev3.Sound.speak('Place Mark').wait()
+        self.arm_calibration()
+        self.drive_inches(-19.5, 400)
+
+    def mark_sq4(self):
+        """Chris tic tac toe code"""
+        self.drive_inches(6.5, 400)
+        self.turn_degrees(90, 400)
+        self.drive_inches(6.5, 400)
+        ev3.Sound.speak('Place Mark').wait()
+        self.arm_calibration()
+        self.drive_inches(-6.5, 400)
+        self.turn_degrees(-90, 400)
+        self.drive_inches(-6.5, 400)
+
+    def mark_sq5(self):
+        """Chris tic tac toe code"""
+        self.drive_inches(13, 400)
+        self.turn_degrees(90, 400)
+        self.drive_inches(6.5, 400)
+        ev3.Sound.speak('Place Mark').wait()
+        self.arm_calibration()
+        self.drive_inches(-6.5, 400)
+        self.turn_degrees(-90, 400)
+        self.drive_inches(-13, 400)
+
+    def mark_sq6(self):
+        """Chris tic tac toe code"""
+        self.drive_inches(19.5, 400)
+        self.turn_degrees(90, 400)
+        self.drive_inches(6.5, 400)
+        ev3.Sound.speak('Place Mark').wait()
+        self.arm_calibration()
+        self.drive_inches(-6.5, 400)
+        self.turn_degrees(-90, 400)
+        self.drive_inches(-19.5, 400)
+
+    def mark_sq7(self):
+        """Chris tic tac toe code"""
+        self.drive_inches(6.5, 400)
+        self.turn_degrees(90, 400)
+        self.drive_inches(13, 400)
+        ev3.Sound.speak('Place Mark').wait()
+        self.arm_calibration()
+        self.drive_inches(-13, 400)
+        self.turn_degrees(-90, 400)
+        self.drive_inches(-6.5, 400)
+
+    def mark_sq8(self):
+        """Chris tic tac toe code"""
+        self.drive_inches(13, 400)
+        self.turn_degrees(90, 400)
+        self.drive_inches(13, 400)
+        ev3.Sound.speak('Place Mark').wait()
+        self.arm_calibration()
+        self.drive_inches(-13, 400)
+        self.turn_degrees(-90, 400)
+        self.drive_inches(-13, 400)
+
+    def mark_sq9(self):
+        """Chris tic tac toe code"""
+        self.drive_inches(19.5, 400)
+        self.turn_degrees(90, 400)
+        self.drive_inches(13, 400)
+        ev3.Sound.speak('Place Mark').wait()
+        self.arm_calibration()
+        self.drive_inches(-13, 400)
+        self.turn_degrees(-90, 400)
+        self.drive_inches(-19.5, 400)
 
