@@ -1,3 +1,4 @@
+#Run simultaneously with mover.py
 from players import *
 import tkinter
 from tkinter import ttk

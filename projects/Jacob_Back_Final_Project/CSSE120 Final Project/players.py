@@ -2,6 +2,7 @@ import mqtt_remote_method_calls as com
 
 
 class Player(object):
+    """Creates and stores the instance variables for the Player class. """
     def __init__(self, rectangle, canvas, idp, canvas_power_up, power_rect,
                  player_score):
         self.speed = 20
@@ -66,7 +67,10 @@ class Player(object):
         self.mqtt_client_robot.send_message('get_color_value', [])
 
     def get_power_up(self, color):
-        """"""
+        """Determines the robot and player's speed based upon the color
+        passed into the method. Then, sets self.power_up to False, changes
+        the powerup rectangle color back to red, and sends a meessage over
+        mqtt communication for the robot to lower its arm."""
         if self.power_up:
             print(color)
             if color < 5:
@@ -97,6 +101,7 @@ class Player(object):
 
 class Ball(object):
     def __init__(self, circle, canvas):
+        """Creates and stores the instance variables for the Ball class."""
         self.circle = circle
         self.canvas = canvas
         self.mqtt_client_one = com.MqttClient(None)
