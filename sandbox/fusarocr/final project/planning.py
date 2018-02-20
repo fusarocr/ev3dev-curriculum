@@ -1,237 +1,10 @@
 import tkinter as ttk
-
 import mqtt_remote_method_calls as com
-
-
-# import math
-# import robot_controller as robo
-# import ev3dev as ev3
-# import time
-
-class TicTacToe(object):
-    def __init__(self):
-        self.root = ttk.Tk()
-        self.root.title('Tic Tac Toe')
-        self.main_frame0 = ttk.Frame(self.root, padx=10)
-        self.main_frame0.grid()
-
-        # single / multiplayer button
-        self.multiplayer = ttk.Button(self.main_frame0, text='Multi-Player')
-        self.multiplayer.grid(row=0, column=0)
-        self.multiplayer['command'] = lambda: self.multi()
-
-        self.single_player = ttk.Button(self.main_frame0, text='Single Player')
-        self.single_player.grid(row=1, column=0)
-        self.single_player['command'] = lambda: self.single()
-
-        self.root.mainloop()
-
-    def single(self):
-        self.root.withdraw()
-        Single_Player()
-
-    def multi(self):
-        self.root.withdraw()
-        Multi_Player()
-
-
-class Multi_Player(object):
-    def __init__(self):
-        self.root = ttk.Tk()
-        self.root.title('Tic Tac Toe')
-        self.main_frame1 = ttk.Frame(self.root, padx=10)
-        self.main_frame1.grid()
-        self.normal_board = self.normal_board()
-
-    def change_board(self):
-        self.root.withdraw()
-        Single_Player()
-
-    def normal_board(self):
-        # Single player button
-        self.single_player = ttk.Button(self.main_frame1, text='Single Player')
-        self.single_player.grid(row=0, column=0)
-        self.single_player['command'] = lambda: self.change_board()
-
-        # TicTacToe Buttons
-        self.square1 = ttk.Button(self.main_frame1, text=' ', width=4,
-                                  command=self.change_button1)
-        self.square1.grid(row=1, column=1)
-
-        self.square2 = ttk.Button(self.main_frame1, text=' ', width=4,
-                                  command=self.change_button2)
-        self.square2.grid(row=1, column=2)
-
-        self.square3 = ttk.Button(self.main_frame1, text=' ', width=4,
-                                  command=self.change_button3)
-        self.square3.grid(row=1, column=3)
-
-        self.square4 = ttk.Button(self.main_frame1, text=' ', width=4,
-                                  command=self.change_button4)
-        self.square4.grid(row=2, column=1)
-
-        self.square5 = ttk.Button(self.main_frame1, text=' ', width=4,
-                                  command=self.change_button5)
-        self.square5.grid(row=2, column=2)
-
-        self.square6 = ttk.Button(self.main_frame1, text=' ', width=4,
-                                  command=self.change_button6)
-        self.square6.grid(row=2, column=3)
-
-        self.square7 = ttk.Button(self.main_frame1, text=' ', width=4,
-                                  command=self.change_button7)
-        self.square7.grid(row=3, column=1)
-
-        self.square8 = ttk.Button(self.main_frame1, text=' ', width=4,
-                                  command=self.change_button8)
-        self.square8.grid(row=3, column=2)
-
-        self.square9 = ttk.Button(self.main_frame1, text=' ', width=4,
-                                  command=self.change_button9)
-        self.square9.grid(row=3, column=3)
-
-        # Restart Button
-        self.restart = ttk.Button(self.main_frame1, text='New Game',
-                                  command=self.reset, width=8)
-        self.restart.grid(row=5, column=4)
-
-    def reset(self):
-        # Reset game board
-        self.root.withdraw()
-        print('New Game')
-        Multi_Player()
-
-    def check_win(self):
-        # Check win
-        win = self.win_game()
-        if win == True:
-            print('You won! Press New Game to Play Again.')
-
-    def win_game(self):
-        # How to win
-        if self.square1['text'] == self.square2['text'] == self.square3[
-            'text']:
-            if self.square1['text'] != ' ':
-                return True
-        elif self.square4['text'] == self.square5['text'] == self.square6[
-            'text']:
-            if self.square4['text'] != ' ':
-                return True
-        elif self.square7['text'] == self.square8['text'] == self.square9[
-            'text']:
-            if self.square7['text'] != ' ':
-                return True
-        elif self.square1['text'] == self.square4['text'] == self.square7[
-            'text']:
-            if self.square1['text'] != ' ':
-                return True
-        elif self.square2['text'] == self.square5['text'] == self.square8[
-            'text']:
-            if self.square2['text'] != ' ':
-                return True
-        elif self.square3['text'] == self.square6['text'] == self.square9[
-            'text']:
-            if self.square3['text'] != ' ':
-                return True
-        elif self.square1['text'] == self.square5['text'] == self.square9[
-            'text']:
-            if self.square1['text'] != ' ':
-                return True
-        elif self.square3['text'] == self.square5['text'] == self.square7[
-            'text']:
-            if self.square3['text'] != ' ':
-                return True
-        else:
-            print('error')
-
-    def change_button1(self):
-        """"Change the first square to X, O, or blank"""
-        if self.square1['text'] == ' ':
-            self.square1['text'] = 'X'
-        elif self.square1['text'] == 'X':
-            self.square1['text'] = 'O'
-        elif self.square1['text'] == 'O':
-            self.square1['text'] = ' '
-        self.check_win()
-
-    def change_button2(self):
-        if self.square2['text'] == ' ':
-            self.square2['text'] = 'X'
-        elif self.square2['text'] == 'X':
-            self.square2['text'] = 'O'
-        elif self.square2['text'] == 'O':
-            self.square2['text'] = ' '
-        self.check_win()
-
-    def change_button3(self):
-        if self.square3['text'] == ' ':
-            self.square3['text'] = 'X'
-        elif self.square3['text'] == 'X':
-            self.square3['text'] = 'O'
-        elif self.square3['text'] == 'O':
-            self.square3['text'] = ' '
-        self.check_win()
-
-    def change_button4(self):
-        if self.square4['text'] == ' ':
-            self.square4['text'] = 'X'
-        elif self.square4['text'] == 'X':
-            self.square4['text'] = 'O'
-        elif self.square4['text'] == 'O':
-            self.square4['text'] = ' '
-        self.check_win()
-
-    def change_button5(self):
-        if self.square5['text'] == ' ':
-            self.square5['text'] = 'X'
-        elif self.square5['text'] == 'X':
-            self.square5['text'] = 'O'
-        elif self.square5['text'] == 'O':
-            self.square5['text'] = ' '
-        self.check_win()
-
-    def change_button6(self):
-        if self.square6['text'] == ' ':
-            self.square6['text'] = 'X'
-        elif self.square6['text'] == 'X':
-            self.square6['text'] = 'O'
-        elif self.square6['text'] == 'O':
-            self.square6['text'] = ' '
-        self.check_win()
-
-    def change_button7(self):
-        if self.square7['text'] == ' ':
-            self.square7['text'] = 'X'
-        elif self.square7['text'] == 'X':
-            self.square7['text'] = 'O'
-        elif self.square7['text'] == 'O':
-            self.square7['text'] = ' '
-        self.check_win()
-
-    def change_button8(self):
-        if self.square8['text'] == ' ':
-            self.square8['text'] = 'X'
-        elif self.square8['text'] == 'X':
-            self.square8['text'] = 'O'
-        elif self.square8['text'] == 'O':
-            self.square8['text'] = ' '
-        self.check_win()
-
-    def change_button9(self):
-        if self.square9['text'] == ' ':
-            self.square9['text'] = 'X'
-        elif self.square9['text'] == 'X':
-            self.square9['text'] = 'O'
-        elif self.square9['text'] == 'O':
-            self.square9['text'] = ' '
-        self.check_win()
 
 
 class Single_Player(object):
     def __init__(self):
         self.turn = 'player'
-        self.player = 'X'
-        self.cpu = 'O'
         self.seq0 = [0, 0, 0, 0, 0, 0, 0, 0, 0]  # 0 is none, 1 is X, 2 is O
         self.seq = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.mqtt_client = com.MqttClient()
@@ -245,118 +18,39 @@ class Single_Player(object):
         self.check_var1 = 1
         self.check_var2 = 2
         self.cpu_board()
-        # self.checkers()
-
-    # def check_win(self):
-    #     # Check win
-    #     win = self.win_game()
-    #     if win == True:
-    #         print('Press New Game to Play Again.')
-    #         return True
-    #     return False
-    #
-    # def win_game(self):
-    #     # How to win
-    #     if self.square1['text'] == self.square2['text'] == \
-    #             self.square3[
-    #                 'text']:
-    #         if self.square1['text'] != ' ':
-    #             return True
-    #     elif self.square4['text'] == self.square5['text'] == \
-    #             self.square6[
-    #                 'text']:
-    #         if self.square4['text'] != ' ':
-    #             return True
-    #     elif self.square7['text'] == self.square8['text'] == \
-    #             self.square9[
-    #                 'text']:
-    #         if self.square7['text'] != ' ':
-    #             return True
-    #     elif self.square1['text'] == self.square4['text'] == \
-    #             self.square7[
-    #                 'text']:
-    #         if self.square1['text'] != ' ':
-    #             return True
-    #     elif self.square2['text'] == self.square5['text'] == \
-    #             self.square8[
-    #                 'text']:
-    #         if self.square2['text'] != ' ':
-    #             return True
-    #     elif self.square3['text'] == self.square6['text'] == \
-    #             self.square9[
-    #                 'text']:
-    #         if self.square3['text'] != ' ':
-    #             return True
-    #     elif self.square1['text'] == self.square5['text'] == \
-    #             self.square9[
-    #                 'text']:
-    #         if self.square1['text'] != ' ':
-    #             return True
-    #     elif self.square3['text'] == self.square5['text'] == \
-    #             self.square7[
-    #                 'text']:
-    #         if self.square3['text'] != ' ':
-    #             return True
-    #     else:
-    #         print('error')
 
     def full_board(self):
-        # print('checking board')
-        # sum = 0
-        # for k in range(len(self.seq)):
-        #     print(self.seq[k])
-        #     if self.seq[k] == 0:
-        #         sum = sum + 1
-        # print('sum', sum)
-        # if sum != 0:
-        #     print('sum inn', sum)
-        #     sum = 0
-        #     return True
-        # else:
-        #     print('Cats Game! Press New Game to Start Again')
         if sum(self.seq) <= 10:
-            print('sum,sum', sum(self.seq))
             return True
         else:
             return
 
     def is_cpu_turn(self):
-        print('cpu tun')
-        print(self.turn)
         if self.full_board() == True:
             if self.seq0 != self.seq:
                 for k in range(len(self.seq)):
                     self.seq0[k] = self.seq[k]
                 self.algorithm()
         else:
-            print('1 Cats Game! Press New Game to Start Again')
+            print('Cats Game! Press New Game to Start Again')
 
     def cpu_turn(self):
         self.algorithm()
-
-    def change_board(self):
-        self.root.withdraw()
-        Multi_Player()
 
     def cpu_board(self):
         # Checkbox
         self.checkbox1 = ttk.Checkbutton(self.main_frame, text='X')
         self.checkbox1.grid(row=0, column=1)
-        self.checkbox1['command'] = lambda: self.is_checked(self.check_var1)
+        self.checkbox1['command'] = lambda: self.is_checked1()
 
         self.checkbox2 = ttk.Checkbutton(self.main_frame, text='O')
         self.checkbox2.grid(row=1, column=1)
-        self.checkbox2['command'] = lambda: self.is_checked(self.check_var2)
+        self.checkbox2['command'] = lambda: self.is_checked2()
 
         # Restart Button
         self.restart = ttk.Button(self.main_frame, text='New Game',
                                   command=self.reset, width=8)
         self.restart.grid(row=5, column=5)
-
-        # single / multiplayer button
-        self.multiplayer = ttk.Button(self.main_frame, text='Multi-Player')
-        self.multiplayer.grid(row=0, column=0)
-        self.multiplayer['command'] = lambda: self.multi()
 
         # TicTacToe Buttons
         self.square1 = ttk.Button(self.main_frame, text=' ', width=4,
@@ -454,18 +148,28 @@ class Single_Player(object):
         self.turn = 'cpu'
         self.is_cpu_turn()
 
-    def multi(self):
-        self.root.withdraw()
-        Multi_Player()
-
     def reset(self):
         # Reset game board
         self.root.withdraw()
+        self.root_err.withdraw()
         print('New Game')
         Single_Player()
 
-    def is_checked(self, checkbox):
-        print('dumbass')
+    def is_checked1(self):
+        if self.check_var2_0 == 1:
+            self.check_error()
+        else:
+            self.check_var1_0 = 1
+            self.player = 'X'
+            self.cpu = 'O'
+
+    def is_checked2(self):
+        if self.check_var1_0 == 1:
+            self.check_error()
+        else:
+            self.check_var2_0 = 1
+            self.player = 'O'
+            self.cpu = 'X'
 
     def check_error(self):
         self.root_err = ttk.Tk()
@@ -477,46 +181,49 @@ class Single_Player(object):
                                                           'as X and 0',
                                    width=20)
         self.err_bttn.grid(row=2, column=2)
-        self.err_bttn['command'] = lambda: self.reset()
+        self.err_bttn['command'] = lambda: self.close_window()
 
     def open_move(self):
         print('open')
-        # go in center
-        if self.seq[4] == 0:
-            self.square5['text'] = self.cpu
-            self.seq[4] = 2
-            self.seq0[4] = 2
-            self.turn = 'player'
-            self.cpu_mark5()
-        # #corner block
-        # elif self.seq[2] == 1 and self.seq[6] == 1:
-        #     if self.seq[1] == 0 and self.seq[7] == 0:
-        #         self.square2['text'] = self.cpu
-        #         self.seq[1] = 2
-        #         self.seq0[1] = 2
-        #         self.turn = 'player'
-        elif self.seq[1]==self.seq[5]==1 or self.seq[5]==self.seq[7]==1 or \
-                self.seq[7]==self.seq[3]==1 or self.seq[3]==self.seq[1]==1:
+        if sum(self.seq) == 1:
+            # go in center
+            if self.seq[4] == 0:
+                self.square5['text'] = self.cpu
+                self.seq[4] = 2
+                self.seq0[4] = 2
+                self.turn = 'player'
+                self.cpu_mark5()
+            elif self.seq[4] != 0 and self.seq[0] == 0:
+                self.square1['text'] = self.cpu
+                self.seq[0] = 2
+                self.seq0[0] = 2
+                self.turn = 'player'
+                self.cpu_mark1()
+
+        elif self.seq[1] == self.seq[5] == 1 or self.seq[5] == self.seq[
+            7] == 1 or \
+                                self.seq[7] == self.seq[3] == 1 or self.seq[
+            3] == self.seq[1] == 1:
             # prevent two options
-            if self.seq[1]==self.seq[5] and self.seq[2]==0:
+            if self.seq[1] == self.seq[5] == 1 and self.seq[2] == 0:
                 self.square3['text'] = self.cpu
                 self.seq[2] = 2
                 self.seq0[2] = 2
                 self.turn = 'player'
                 self.cpu_mark3()
-            elif self.seq[5]==self.seq[7] and self.seq[8]==0:
+            elif self.seq[5] == self.seq[7] == 1 and self.seq[8] == 0:
                 self.square9['text'] = self.cpu
                 self.seq[8] = 2
                 self.seq0[8] = 2
                 self.turn = 'player'
                 self.cpu_mark9()
-            elif self.seq[3] == self.seq[7] and self.seq[6] == 0:
+            elif self.seq[3] == self.seq[7] == 1 and self.seq[6] == 0:
                 self.square7['text'] = self.cpu
                 self.seq[6] = 2
                 self.seq0[6] = 2
                 self.turn = 'player'
                 self.cpu_mark7()
-            elif self.seq[3] == self.seq[1] and self.seq[0] == 0:
+            elif self.seq[3] == self.seq[1] == 1 and self.seq[0] == 0:
                 self.square1['text'] = self.cpu
                 self.seq[0] = 2
                 self.seq0[0] = 2
@@ -643,9 +350,6 @@ class Single_Player(object):
 
     def defense(self):
         print('defens')
-        print(self.seq0)
-        print(self.seq)
-        print(self.turn)
         if self.seq[1] == self.seq[2] == 1 and self.seq[0] == 0 or self.seq[
             4] == self.seq[8] == 1 and self.seq[0] == 0 or \
                                         self.seq[3] == self.seq[6] == 1 and \
@@ -780,6 +484,37 @@ class Single_Player(object):
                 self.turn = 'player'
                 self.cpu_mark8()
                 return
+        # block two option set-up
+        elif self.seq[4] == 1 and sum(self.seq) == 4:
+            if self.seq[0] == 2 and self.seq[2] == 0:
+                self.square3['text'] = self.cpu
+                self.seq[2] = 2
+                self.seq0[2] = 2
+                self.turn = 'player'
+                self.cpu_mark3()
+                return
+            elif self.seq[2] == 2 and self.seq[0] == 0:
+                self.square1['text'] = self.cpu
+                self.seq[0] = 2
+                self.seq0[0] = 2
+                self.turn = 'player'
+                self.cpu_mark1()
+                return
+            elif self.seq[8] == 2 and self.seq[6] == 0:
+                self.square7['text'] = self.cpu
+                self.seq[6] = 2
+                self.seq0[6] = 2
+                self.turn = 'player'
+                self.cpu_mark7()
+                return
+            elif self.seq[6] == 2 and self.seq[8] == 0:
+                self.square9['text'] = self.cpu
+                self.seq[8] = 2
+                self.seq0[8] = 2
+                self.turn = 'player'
+                self.cpu_mark9()
+                return
+        # almost cats game
         elif sum(self.seq) >= 7:
             print('yum')
             for k in range(len(self.seq)):
@@ -819,40 +554,35 @@ class Single_Player(object):
             return
 
     def cpu_mark1(self):
-        print('start pipe')
         self.mqtt_client.send_message('mark_sq1', [])
 
     def cpu_mark2(self):
-        print('start pipe')
         self.mqtt_client.send_message('mark_sq2', [])
 
     def cpu_mark3(self):
-        print('start pipe')
         self.mqtt_client.send_message('mark_sq3', [])
 
     def cpu_mark4(self):
-        print('start pipe')
         self.mqtt_client.send_message('mark_sq4', [])
 
     def cpu_mark5(self):
-        print('start pipe')
         self.mqtt_client.send_message('mark_sq5', [])
 
     def cpu_mark6(self):
-        print('start pipe')
+        print('done')
         self.mqtt_client.send_message('mark_sq6', [])
 
     def cpu_mark7(self):
-        print('start pipe')
         self.mqtt_client.send_message('mark_sq7', [])
 
     def cpu_mark8(self):
-        print('start pipe')
         self.mqtt_client.send_message('mark_sq8', [])
 
     def cpu_mark9(self):
-        print('start pipe')
         self.mqtt_client.send_message('mark_sq9', [])
 
+    def close_window(self):
+        self.reset()
 
-TicTacToe()
+
+Single_Player()
