@@ -71,13 +71,13 @@ class Player(object):
             print(color)
             if color < 5:
                 self.speed = 10
-                self.r_speed=400
+                self.r_speed = 400
             elif color < 10:
                 self.speed = 15
                 self.r_speed = 450
             elif color < 20:
                 self.speed = 20
-                self.r_speed=500
+                self.r_speed = 500
             elif color < 80:
                 self.speed = 25
                 self.r_speed = 550

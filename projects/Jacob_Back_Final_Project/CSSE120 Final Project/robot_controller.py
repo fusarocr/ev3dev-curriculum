@@ -32,7 +32,7 @@ class Snatch3r(object):
         self.pixy = ev3.Sensor(driver_name="pixy-lego")
         self.mqtt_client = com.MqttClient()
         self.mqtt_client.connect_to_pc()
-        self.run=True
+        self.run = True
         assert self.left_motor.connected
         assert self.right_motor.connected
         assert self.arm_motor.connected
@@ -175,7 +175,7 @@ class Snatch3r(object):
 
     def kill(self):
         """Changes self.run to False"""
-        self.run=False
+        self.run = False
 
     def seek_beacon(self):
         """Locates the beacon and returns True when the beacon is found"""
