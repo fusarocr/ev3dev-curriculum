@@ -9,18 +9,26 @@ class SinglePlayer(object):
     """
 
     def __init__(self):
+        """ Initializes the instance variables for the SinglePlayer class
+        that will be used for other methods."""
+        # Place-holder Arrays for the tic tac toe board
         self.seq0 = [0, 0, 0, 0, 0, 0, 0, 0, 0]  # 0 is none, 1 is X, 2 is O
         self.seq = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        # MQTT communication set-up
         self.mqtt_client = com.MqttClient()
         self.mqtt_client.connect_to_ev3()
+        # GUI set-up
         self.root = ttk.Tk()
         self.root.title("Tic Tac Toe with Robo")
+        # Create the main tkinter frame
         self.main_frame = ttk.Frame(self.root, padx=10)
         self.main_frame.grid()
+        # Checkbox variables
         self.check_var1_0 = 0
         self.check_var2_0 = 0
         self.check_var1 = 1
         self.check_var2 = 2
+        # Set-up the board and start the game
         self.cpu_board()
 
     def cpu_board(self):
@@ -230,9 +238,9 @@ class SinglePlayer(object):
     def full_board(self):
         """ Checks to see if the board is full."""
         if sum(self.seq) <= 10:
-            return False
+            return True
         else:
-            return
+            return False
 
     def is_cpu_turn(self):
         """
@@ -241,7 +249,7 @@ class SinglePlayer(object):
         move. Otherwise, there is a cats game so print
         'Cats Game! Press New Game to Start Again'.
         """
-        if self.full_board() == False:
+        if self.full_board():
             if self.seq0 != self.seq:
                 for k in range(len(self.seq)):
                     self.seq0[k] = self.seq[k]
@@ -252,10 +260,10 @@ class SinglePlayer(object):
     def algorithm(self):
         """ Determines if the computer should make a winning, defensive,
         or open move."""
-        if self.cpu_win() == True:
+        if self.cpu_win():
             if self.turn == 'cpu':
                 self.cpu_win()
-        elif self.defense() == True:
+        elif self.defense():
             print(self.turn)
             if self.turn == 'cpu':
                 self.defense()
@@ -270,65 +278,48 @@ class SinglePlayer(object):
         Scans the board to see if a winning move is available for the
         computer and return True. Otherwise returns False.
         """
-        print(self.seq)
         if self.turn == 'cpu':
-            print(self.turn)
-            if self.seq[1] == self.seq[2] == 2 and self.seq[0] == 0 or \
-                    self.seq[4] == self.seq[
-                8] == 2 and self.seq[0] == 0 or \
-                                    self.seq[3] == self.seq[6] == 2 and self.seq[0] == 0:
+            if self.seq[1] == self.seq[2] == 2 and self.seq[0] == 0 \
+                    or self.seq[4] == self.seq[8] == 2 and self.seq[0] == 0 \
+                    or self.seq[3] == self.seq[6] == 2 and self.seq[0] == 0:
                 self.cpu_change_square1()
                 print('I win!')
                 return True
-            elif self.seq[0] == self.seq[1] == 2 and self.seq[2] == 0 or self.seq[5] == \
-                    self.seq[
-                8] == 2 and self.seq[2] == 0 or \
-                                    self.seq[4] == self.seq[6] == 2 and self.seq[2] == 0:
+            elif self.seq[0] == self.seq[1] == 2 and self.seq[2] == 0 \
+                    or self.seq[5] == self.seq[8] == 2 and self.seq[2] == 0 \
+                    or self.seq[4] == self.seq[6] == 2 and self.seq[2] == 0:
                 self.cpu_change_square3()
                 print('I win!')
                 return True
-            elif self.seq[5] == self.seq[2] == 2 and self.seq[8] == 0 or \
-                    self.seq[4] == self.seq[
-                0] == 2 and self.seq[8] == 0 or \
-                                    self.seq[7] == self.seq[6] == 2 and self.seq[8] == 0:
+            elif self.seq[5] == self.seq[2] == 2 and self.seq[8] == 0 \
+                    or self.seq[4] == self.seq[0] == 2 and self.seq[8] == 0 \
+                    or self.seq[7] == self.seq[6] == 2 and self.seq[8] == 0:
                 self.cpu_change_square9()
                 print('I win!')
                 return True
-            elif self.seq[4] == self.seq[2] == 2 and self.seq[6] == 0 or \
-                                    self.seq[3] == \
-                    self.seq[
-                0] == 2 and self.seq[6] == 0 or \
-                                    self.seq[7] == self.seq[8] == 2 and self.seq[6] == 0:
-                print('k')
-                print('i win')
+            elif self.seq[4] == self.seq[2] == 2 and self.seq[6] == 0 \
+                    or self.seq[3] == self.seq[0] == 2 and self.seq[6] == 0 \
+                    or self.seq[7] == self.seq[8] == 2 and self.seq[6] == 0:
                 self.cpu_change_square7()
                 print('I win!')
                 return True
-            elif self.seq[0] == self.seq[6] == 2 and self.seq[3] == 0 or \
-                                    self.seq[4] == \
-                    self.seq[
-                5] == 2 and self.seq[3] == 0:
+            elif self.seq[0] == self.seq[6] == 2 and self.seq[3] == 0 \
+                    or self.seq[4] == self.seq[5] == 2 and self.seq[3] == 0:
                 self.cpu_change_square4()
                 print('I win!')
                 return True
-            elif self.seq[0] == self.seq[2] == 2 and self.seq[1] == 0 or \
-                                    self.seq[4] == \
-                    self.seq[
-                7] == 2 and self.seq[1] == 0:
+            elif self.seq[0] == self.seq[2] == 2 and self.seq[1] == 0 \
+                    or self.seq[4] == self.seq[7] == 2 and self.seq[1] == 0:
                 self.cpu_change_square2()
                 print('I win!')
                 return True
-            elif self.seq[8] == self.seq[2] == 2 and self.seq[5] == 0 or \
-                                    self.seq[4] == \
-                    self.seq[
-                3] == 2 and self.seq[5] == 0:
+            elif self.seq[8] == self.seq[2] == 2 and self.seq[5] == 0 \
+                    or self.seq[4] == self.seq[3] == 2 and self.seq[5] == 0:
                 self.cpu_change_square6()
                 print('I win!')
                 return True
-            elif self.seq[8] == self.seq[6] == 2 and self.seq[7] == 0 or \
-                                    self.seq[4] == \
-                    self.seq[
-                1] == 2 and self.seq[7] == 0:
+            elif self.seq[8] == self.seq[6] == 2 and self.seq[7] == 0 \
+                    or self.seq[4] == self.seq[1] == 2 and self.seq[7] == 0:
                 self.cpu_change_square8()
                 print('I win!')
                 return True
@@ -342,40 +333,33 @@ class SinglePlayer(object):
         Blocks the the opponent if they are about to win,
         or blocks the opponent from making a move to give them an advantage.
         """
-        print('def')
-        if self.seq[1] == self.seq[2] == 1 and self.seq[0] == 0 or self.seq[
-            4] == self.seq[8] == 1 and self.seq[0] == 0 or \
-                                        self.seq[3] == self.seq[6] == 1 and \
-                                self.seq[0] == 0:
+        if self.seq[1] == self.seq[2] == 1 and self.seq[0] == 0 \
+                or self.seq[4] == self.seq[8] == 1 and self.seq[0] == 0 \
+                or self.seq[3] == self.seq[6] == 1 and self.seq[0] == 0:
             self.cpu_change_square1()
-        elif self.seq[0] == self.seq[1] == 1 and self.seq[2] == 0 or self.seq[
-            5] == self.seq[8] == 1 and self.seq[2] == 0 or \
-                                        self.seq[4] == self.seq[6] == 1 and \
-                                self.seq[2] == 0:
+        elif self.seq[0] == self.seq[1] == 1 and self.seq[2] == 0 \
+                or self.seq[5] == self.seq[8] == 1 and self.seq[2] == 0 \
+                or self.seq[4] == self.seq[6] == 1 and self.seq[2] == 0:
             self.cpu_change_square3()
-        elif self.seq[5] == self.seq[2] == 1 and self.seq[8] == 0 or self.seq[
-            4] == self.seq[0] == 1 and self.seq[8] == 0 or \
-                                        self.seq[7] == self.seq[6] == 1 and \
-                                self.seq[8] == 0:
+        elif self.seq[5] == self.seq[2] == 1 and self.seq[8] == 0 \
+                or self.seq[4] == self.seq[0] == 1 and self.seq[8] == 0 \
+                or self.seq[7] == self.seq[6] == 1 and self.seq[8] == 0:
             self.cpu_change_square9()
-        elif self.seq[4] == self.seq[2] == 1 and self.seq[6] == 0 or self.seq[
-            3] == self.seq[0] == 1 and self.seq[6] == 0 or \
-                                        self.seq[7] == self.seq[8] == 1 and \
-                                self.seq[6] == 0:
+        elif self.seq[4] == self.seq[2] == 1 and self.seq[6] == 0 \
+                or self.seq[3] == self.seq[0] == 1 and self.seq[6] == 0 \
+                or self.seq[7] == self.seq[8] == 1 and self.seq[6] == 0:
             self.cpu_change_square7()
-        elif self.seq[0] == self.seq[6] == 1 and self.seq[3] == 0 or self.seq[
-            4] == self.seq[5] == 1 \
-                and \
-                        self.seq[3] == 0:
+        elif self.seq[0] == self.seq[6] == 1 and self.seq[3] == 0 \
+                or self.seq[4] == self.seq[5] == 1 and self.seq[3] == 0:
             self.cpu_change_square4()
-        elif self.seq[0] == self.seq[2] == 1 and self.seq[1] == 0 or self.seq[
-            4] == self.seq[7] == 1 and self.seq[1] == 0:
+        elif self.seq[0] == self.seq[2] == 1 and self.seq[1] == 0 \
+                or self.seq[4] == self.seq[7] == 1 and self.seq[1] == 0:
             self.cpu_change_square2()
-        elif self.seq[8] == self.seq[2] == 1 and self.seq[5] == 0 or self.seq[
-            4] == self.seq[3] == 1 and self.seq[5] == 0:
+        elif self.seq[8] == self.seq[2] == 1 and self.seq[5] == 0 \
+                or self.seq[4] == self.seq[3] == 1 and self.seq[5] == 0:
             self.cpu_change_square6()
-        elif self.seq[8] == self.seq[6] == 1 and self.seq[7] == 0 or self.seq[
-            4] == self.seq[1] == 1 and self.seq[7] == 0:
+        elif self.seq[8] == self.seq[6] == 1 and self.seq[7] == 0 \
+                or self.seq[4] == self.seq[1] == 1 and self.seq[7] == 0:
             self.cpu_change_square8()
         else:
             self.stop_adavantage()
@@ -417,27 +401,13 @@ class SinglePlayer(object):
         elif self.seq[3] == self.seq[1] == 1 and self.seq[0] == 0:
             self.cpu_change_square1()
 
-    # def block_two_paths(self):
-    #     """ Blocks the opponent from gaining two paths to create a win.--"""
-    #     if self.seq[0] == 2 and self.seq[2] == 0:
-    #         self.cpu_change_square3()
-    #     elif self.seq[2] == 2 and self.seq[0] == 0:
-    #         self.cpu_change_square1()
-    #     elif self.seq[8] == 2 and self.seq[6] == 0:
-    #         self.cpu_change_square7()
-    #     elif self.seq[6] == 2 and self.seq[8] == 0:
-    #         self.cpu_change_square9()
-
     def open_move(self):
-        """"""
-        print('open')
+        """ Choose the best available open move."""
         if sum(self.seq) == 1:
             self.center()
         elif self.seq[4] == 2 and sum(self.seq) == 4:
-            print('ad')
             self.get_advantage()
         elif sum(self.seq) >= 7:
-            print('bet')
             self.almost_cats_game()
         else:
             return
@@ -451,8 +421,14 @@ class SinglePlayer(object):
 
     def get_advantage(self):
         """ Gain an advantage to win."""
-        if self.seq[0]==0:
+        if self.seq[0] == 0 and self.seq[8] != 1:
             self.cpu_change_square1()
+        elif self.seq[2] == 0 and self.seq[6] != 1:
+            self.cpu_change_square3()
+        elif self.seq[6] == 0 and self.seq[2] != 1:
+            self.cpu_change_square7()
+        elif self.seq[8] == 0 and self.seq[0] != 1:
+            self.cpu_change_square9()
 
     def almost_cats_game(self):
         """ If there is goinig to be a CATS game, the cpu will make the
