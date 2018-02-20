@@ -421,14 +421,26 @@ class SinglePlayer(object):
 
     def get_advantage(self):
         """ Gain an advantage to win."""
-        if self.seq[0] == 0 and self.seq[8] != 1:
-            self.cpu_change_square1()
-        elif self.seq[2] == 0 and self.seq[6] != 1:
-            self.cpu_change_square3()
-        elif self.seq[6] == 0 and self.seq[2] != 1:
-            self.cpu_change_square7()
-        elif self.seq[8] == 0 and self.seq[0] != 1:
-            self.cpu_change_square9()
+        if self.seq[0] == 1 and self.seq[8] != 1:
+            if self.seq[7] == 1:
+                self.cpu_change_square7()
+            elif self.seq[5] == 1:
+                self.cpu_change_square3()
+        elif self.seq[2] == 1 and self.seq[6] != 1:
+            if self.seq[3] == 1:
+                self.cpu_change_square1()
+            elif self.seq[7] == 1:
+                self.cpu_change_square9()
+        elif self.seq[6] == 1 and self.seq[2] != 1:
+            if self.seq[1] == 1:
+                self.cpu_change_square1()
+            elif self.seq[5] == 1:
+                self.cpu_change_square9()
+        elif self.seq[8] == 1 and self.seq[0] != 1:
+            if self.seq[1] == 1:
+                self.cpu_change_square3()
+            elif self.seq[3] == 1:
+                self.cpu_change_square7()
 
     def almost_cats_game(self):
         """ If there is goinig to be a CATS game, the cpu will make the
