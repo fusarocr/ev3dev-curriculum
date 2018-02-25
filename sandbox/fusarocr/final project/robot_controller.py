@@ -101,7 +101,7 @@ class Snatch3r(object):
         Moves the Snatch3r arm to the down position.
         """
         # Code that attempts to do this task but has bugs.  Fix them.
-        self.arm_motor.run_to_abs_pos(position_sp = 0)
+        self.arm_motor.run_to_abs_pos()
         self.arm_motor.wait_while(ev3.Motor.STATE_RUNNING)  # Blocks until the
         # motor
         # finishes running
